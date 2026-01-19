@@ -149,4 +149,6 @@ The app saves your selected tags to `label_config.json`. This file is created au
 
 ## License
 
-Free to use and modify as needed.
+This project is licensed under the [MIT License](LICENSE).
+
+
