@@ -24,7 +24,8 @@ DEFAULT_TAGS = ["good first issue", "good-first-issue", "beginner"]
 
 TOP_LANGUAGES = [
     "JavaScript", "Python", "Java", "TypeScript", "C#", "PHP", "C++", "Shell", "Go",
-    "Ruby", "C", "Kotlin", "Rust", "Scala", "Swift", "Objective-C", "PowerShell", "Dart", "Lua"
+    "Ruby", "C", "Kotlin", "Rust", "Scala", "Swift", "Objective-C", "PowerShell", "Dart", "Lua",
+    "Pascal / FreePascal"
 ]
 
 def _read_config():
@@ -124,10 +125,20 @@ def search_open_beginner_issues(languages, days, labels, custom_terms, token, ma
     
     # Add language filters
     if languages:
-        if len(languages) == 1:
-            query_parts.append(f"language:{languages[0]}")
+        # Expand special combined languages
+        expanded_langs = []
+        for lang in languages:
+            if lang == "Pascal / FreePascal":
+                expanded_langs.extend(["Pascal", "FreePascal"])
+            else:
+                expanded_langs.append(lang)
+                
+        # Quote languages if they contain spaces
+        formatted_langs = [f'language:"{l}"' if " " in l else f"language:{l}" for l in expanded_langs]
+        if len(formatted_langs) == 1:
+            query_parts.append(formatted_langs[0])
         else:
-            lang_query = "(" + " OR ".join([f"language:{lang}" for lang in languages]) + ")"
+            lang_query = "(" + " OR ".join(formatted_langs) + ")"
             query_parts.append(lang_query)
     
     query = " ".join(query_parts)

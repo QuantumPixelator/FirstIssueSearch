@@ -7,7 +7,7 @@ A modern, user-friendly desktop application to help you find beginner-friendly G
 ## Features
 
 ### Multi-Language Selection
-- Select multiple programming languages from a list of 20 popular languages
+- Select multiple programming languages from a pre-defined list of popular languages
 - Add custom languages not in the pre-defined list
 - Leave all unchecked to search across all languages
 
